@@ -1,0 +1,30 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+void PrintSolution(int n_open,int n_close,string &output){
+    if(n_open <=0 && n_close<=0){
+        cout<<output<<endl;
+        return;
+    }
+    //we have to solve one case
+    //left call
+    if(n_open>0){
+        output +="(";
+        PrintSolution(n_open-1,n_close,output); 
+        output.pop_back();
+        
+        
+    }
+    if(n_close>0 && n_close>n_open){
+        output += ")";
+        PrintSolution(n_open,n_close-1,output);
+         output.pop_back(")");
+    }
+}
+int main(){
+    int n = 2;
+    int n_open = 2;
+    int n_close = 2;
+    string output ="";
+    PrintSolution(n_open, n_close,output);
+}

@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+private:
+    int age;
+    string name;
+    string occupation;
+    double weight;
+
+public:
+    // Setter method to set attributes
+    void setter(int age, string name, string occupation, double weight) {
+        this->age = age;
+        this->name = name;
+        this->occupation = occupation;
+        this->weight = weight;
+    }
+
+    // Getter methods to access attributes
+    int getAge() const { return age; }
+    const string& getName() const { return name; }
+    const string& getOccupation() const { return occupation; }
+    double getWeight() const { return weight; }
+
+    // Overloading << operator to print attributes
+    friend ostream& operator<<(ostream& os, const Person& person);
+};
+
+// Definition of the << operator outside the class
+ostream& operator<<(ostream& os, const Person& person) {
+    os << "Name: " << person.getName() << "\n";
+    os << "Age: " << person.getAge() << "\n";
+    os << "Occupation: " << person.getOccupation() << "\n";
+    os << "Weight: " << person.getWeight() << " kg\n";
+    return os;
+}
+
+int main() {
+    Person obj;
+    obj.setter(20, "adnan", "student", 70);
+
+    // Printing object using overloaded << operator
+    cout << obj;
+
+    return 0;
+}
+
